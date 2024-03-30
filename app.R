@@ -54,7 +54,9 @@ ui <- page_sidebar(
                 choices = sort(unique(
                   becker2010$Language
                 ))),
-    checkboxInput("average", "Average multiple values?", value = TRUE)
+    selectInput("dialect", "Variety", sort(unique(
+      becker2010$Dialect
+    )))
   ),
   
   card(card_header("Vowel plot"),
@@ -65,18 +67,20 @@ ui <- page_sidebar(
 )
 
 # Server ----
-server <- function(input, output) {
+server <- function(input, output, session) {
+  observe({
+    updateSelectInput(session, "dialect", choices = as.character(becker2010$Dialect[becker2010$Language == input$language]))
+  })
+  
   filter_data <- reactive({
-    lang_data <- filter(becker2010, Language == input$language) |>
+    lang_data <- filter(
+      becker2010,
+      Language == input$language,
+      Dialect == input$dialect
+    ) |>
       select(vowel, f1, f2) |>
       arrange(vowel)
-    
-    if (input$average) {
-      lang_data <- lang_data |>
-        group_by(vowel) |>
-        summarise(f1 = round(mean(f1, na.rm = TRUE)),
-                  f2 = round(mean(f2, na.rm = TRUE)))
-    }
+
     return(lang_data)
   })
   
