@@ -7,7 +7,7 @@
 #    https://shiny.posit.co/
 #
 
-library(shiny)
+# library(shiny)
 library(bslib)
 library(tidyverse)
 library(Polychrome)
@@ -43,7 +43,7 @@ becker2010 <- becker2010_wide %>%
   drop_na(f1, f2)
 
 fill_pal <- as.character(green.armytage.colors(n = 17))
-col_pal <- ifelse(decode_colour(col_pal, to = "hcl")[, "l"] > 50, "black", "white")
+col_pal <- ifelse(decode_colour(fill_pal, to = "hcl")[, "l"] > 50, "black", "white")
 
 f2_lims <- c(2500, 500)
 f1_lims <- c(900, 150)
