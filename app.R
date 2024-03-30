@@ -50,6 +50,7 @@ f1_lims <- c(900, 150)
 
 # UI ----
 ui <- page_sidebar(
+  fillable = FALSE,
   title = "Vowel formants",
   
   sidebar = sidebar(
@@ -65,7 +66,7 @@ ui <- page_sidebar(
   ),
   
   card(card_header("Vowel plot"),
-       plotOutput("vowelPlot", height = "700px")),
+       plotOutput("vowelPlot")),
   
   card(card_header("Formant means"),
        tableOutput("vowelTable"))
