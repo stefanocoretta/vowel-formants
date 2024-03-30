@@ -1,0 +1,12 @@
+name: vowel-formants
+title: vowel-formants
+username: stefanocoretta
+account: stefanocoretta
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11624608
+bundleId: 8435872
+url: https://stefanocoretta.shinyapps.io/vowel-formants/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
