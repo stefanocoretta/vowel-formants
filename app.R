@@ -45,7 +45,7 @@ ui <- page_sidebar(
   title = "Vowel formants",
   
   sidebar = sidebar(
-    "Data from Becker-Krystal 2010.",
+    "Data from Becker-Kristal 2010.",
     h3("Settings"),
     selectInput("language", "Language",
                 choices = sort(unique(
