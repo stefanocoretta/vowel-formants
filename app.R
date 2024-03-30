@@ -10,6 +10,7 @@
 library(shiny)
 library(bslib)
 library(tidyverse)
+library(Polychrome)
 
 # Prep data ----
 
@@ -39,6 +40,8 @@ becker2010 <- becker2010_wide %>%
 
 f1_range <- range(becker2010$f1, na.rm = TRUE)
 f2_range <- range(becker2010$f2, na.rm = TRUE)
+
+col_pal <- as.character(kelly.colors(n = 22))
 
 # UI ----
 ui <- page_sidebar(
@@ -83,9 +86,9 @@ server <- function(input, output) {
     lang_data |>
       ggplot(aes(f2, f1, label = vowel, fill = vowel)) +
       geom_label() +
-      scale_x_reverse(limits = c(2850, 500), position = "top") +
-      scale_y_reverse(limits = c(1150, 150), position = "right") +
-      scale_fill_brewer(type = "qual") +
+      scale_x_reverse(limits = c(2500, 500), position = "top") +
+      scale_y_reverse(limits = c(900, 150), position = "right") +
+      scale_fill_manual(values = col_pal) +
       theme_dark() +
       labs(x = "F2 (Hz)", y = "F1 (Hz)") +
       theme(legend.position = "none") +
