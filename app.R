@@ -89,7 +89,7 @@ server <- function(input, output) {
       theme_dark() +
       labs(x = "F2 (Hz)", y = "F1 (Hz)") +
       theme(legend.position = "none") +
-      coord_fixed(ratio = 1.5)
+      coord_fixed(ratio = 2.5)
   })
   
   output$vowelTable <- renderTable({
