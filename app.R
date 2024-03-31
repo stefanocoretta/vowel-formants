@@ -49,27 +49,50 @@ f2_lims <- c(2500, 500)
 f1_lims <- c(900, 150)
 
 # UI ----
-ui <- page_sidebar(
+ui <- page_navbar(
   fillable = FALSE,
   title = "Vowel formants",
-  
+  id = "nav",
+  ## Sidebar ----
   sidebar = sidebar(
-    "Data from Becker-Kristal 2010.",
-    h3("Settings"),
-    selectInput("language", "Language",
-                choices = sort(unique(
-                  becker2010$Language
-                ))),
-    selectInput("dialect", "Variety", sort(unique(
-      becker2010$Dialect
-    )))
+    conditionalPanel(
+      "input.nav === 'Languages'",
+      "Data from Becker-Kristal 2010.",
+      h3("Settings"),
+      selectInput("language", "Language",
+                  choices = sort(unique(
+                    becker2010$Language
+                  ))),
+      selectInput("dialect", "Variety", sort(unique(
+        becker2010$Dialect
+      )))
+    ),
+    conditionalPanel(
+      "input.nav === 'Systems'",
+      "Data from Becker-Kristal 2010.",
+      h3("Settings"),
+      selectInput("language", "Language",
+                  choices = sort(unique(
+                    becker2010$Language
+                  ))),
+      selectInput("dialect", "Variety", sort(unique(
+        becker2010$Dialect
+      )))
+    )
   ),
-  
-  card(card_header("Vowel plot"),
-       plotOutput("vowelPlot")),
-  
-  card(card_header("Formant means"),
-       tableOutput("vowelTable"))
+  ## Languages ----
+  nav_panel(
+    "Languages",
+    card(card_header("Vowel plot"),
+         plotOutput("vowelPlot")),
+    card(card_header("Formant means"),
+         tableOutput("vowelTable"))
+  ),
+  ## Systems ----
+  nav_panel(
+    "Systems",
+    "Test"
+  )
 )
 
 # Server ----
